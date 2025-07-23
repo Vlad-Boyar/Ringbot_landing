@@ -180,12 +180,15 @@
           body: data,
         });
 
+        const json = await response.json();
+        console.log("📥 Server status:", response.status);
+        console.log("📥 Server response:", json);
+
         if (response.ok) {
           form.style.display = "none";
           thanks.style.display = "block";
         } else {
-          const msg = await response.text();
-          alert("Something went wrong. Server says: " + msg);
+          alert("Something went wrong. Server says: " + (json?.status || "unknown error"));
         }
       } catch (error) {
         alert("Connection error. Please try again later.");
