@@ -7,13 +7,11 @@
   <link rel="icon" href="/favicon.png" type="image/png">
 
   <meta name="description" content="RingBot — AI voice assistant for your business. Handles calls, qualifies leads, books appointments. Integrated with CRM, Telegram, Google Sheets. Try it now.">
-
   <meta property="og:title" content="RingBot — your AI phone assistant">
   <meta property="og:description" content="Try RingBot: AI voice assistant that handles calls, qualifies leads, and books appointments — 24/7.">
   <meta property="og:image" content="Assets/preview.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ringbot-landing.onrender.com/"> 
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RingBot — AI Phone Assistant">
   <meta name="twitter:description" content="Handles calls. Books appointments. Works 24/7. Try it now.">
@@ -122,21 +120,46 @@
       font-size: 1rem;
       color: #6b7280;
     }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .loader {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #10b981;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 4rem auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
   </style>
 </head>
-
 <body>
+  <div class="loader" id="loader"></div>
+
   <div class="container">
     <div class="heading-row">
       <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-      <h1>📞 Meet RingBot — your AI phone assistant</h1>
+      <h1 class="fade-in">📞 Meet RingBot — your AI phone assistant</h1>
       <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
     </div>
 
-    <p>RingBot builds, configures, and maintains AI voice agents for businesses.</p>
-    <p>They can answer questions, qualify leads, and even book appointments — all by phone, 24/7.</p>
+    <p class="fade-in">RingBot builds, configures, and maintains AI voice agents for businesses.</p>
+    <p class="fade-in">They can answer questions, qualify leads, and even book appointments — all by phone, 24/7.</p>
 
-    <p>🎧 First, listen to a real call recording:</p>
+    <p class="fade-in">🎧 First, listen to a real call recording:</p>
     <div class="cta-row">
       <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
       <audio controls>
@@ -146,16 +169,16 @@
       <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
     </div>
 
-    <p>Or test it yourself. Call this number:</p>
+    <p class="fade-in">Or test it yourself. Call this number:</p>
     <div class="cta-row">
       <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
       <a class="cta-button" href="tel:+441313812345">📞 +44 131 381 2345</a>
       <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
     </div>
 
-    <p>We can build a custom voice assistant just like this for your business.</p>
-    <p>It can connect with your CRM, Telegram, Google Sheets — or whatever tools you already use.</p>
-    <p>Want a demo? Just fill out the form below:</p>
+    <p class="fade-in">We can build a custom voice assistant just like this for your business.</p>
+    <p class="fade-in">It can connect with your CRM, Telegram, Google Sheets — or whatever tools you already use.</p>
+    <p class="fade-in">Want a demo? Just fill out the form below:</p>
 
     <form name="lead-form" action="#">
       <div class="form-inner">
@@ -183,24 +206,28 @@
   </div>
 
   <script>
+    window.addEventListener("load", () => {
+      document.getElementById("loader").style.display = "none";
+    });
+
     const form = document.querySelector("form");
     const thanks = document.getElementById("thanks-message");
-  
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-  
+
       const formData = new FormData(form);
-  
+
       try {
         const response = await fetch("https://ringbotwebhook.onrender.com/lead", {
           method: "POST",
           body: formData,
         });
-  
+
         const text = await response.text();
-        console.log("📥 Server status:", response.status);
-        console.log("📥 Response text:", text);
-  
+        console.log("📅 Server status:", response.status);
+        console.log("📅 Response text:", text);
+
         if (response.ok && text.includes("sent")) {
           form.style.display = "none";
           thanks.style.display = "block";
