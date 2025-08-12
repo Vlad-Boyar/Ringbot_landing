@@ -2,288 +2,373 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="Assets/favicon.png" type="image/png">
 
-  <link rel="icon" href="/favicon.png" type="image/png">
-
-  <meta name="description" content="RingBot — AI voice assistant for your business. Handles calls, qualifies leads, books appointments. Integrated with CRM, Telegram, Google Sheets. Try it now.">
+  <title>RingBot — AI Phone Assistant</title>
+  <meta name="description" content="RingBot installs AI phone agents that answer and qualify calls, then send key details to your Telegram — 24/7." />
   <meta property="og:title" content="RingBot — your AI phone assistant">
-  <meta property="og:description" content="Try RingBot: AI voice assistant that handles calls, qualifies leads, and books appointments — 24/7.">
+  <meta property="og:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries. Listen to demos and see transcripts.">
   <meta property="og:image" content="Assets/preview.png">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ringbot-landing.onrender.com/"> 
+  <meta property="og:url" content="https://your-domain.example/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="RingBot — AI Phone Assistant">
-  <meta name="twitter:description" content="Handles calls. Books appointments. Works 24/7. Try it now.">
+  <meta name="twitter:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries.">
   <meta name="twitter:image" content="Assets/preview.png">
 
-  <title>RingBot — AI Voice Assistant</title>
   <style>
+    :root {
+      --bg:#0c1528;
+      --bg-2:#111b33;
+      --card:#0f1d34;
+      --muted:#cfd8e3;
+      --text:#e8eef6;
+      --brand:#69adff;
+      --brand-strong:#3b82f6;
+      --ok:#10b981;
+      --ring:#1f2b44;
+      --border:#24314f;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 20px;
+      --radius-sm: 14px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
-      margin: 0;
-      padding: 0rem 2rem 2rem;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: url('Assets/background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #111827;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+      margin: 0; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      background: linear-gradient(180deg, #0c1528 0%, #0f1a32 50%, #111b33 100%);
+      background-attachment: fixed;
+      color: var(--text);
     }
-  
-    .container {
-      display: none; 
-      max-width: 1020px;
-      width: 100%;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-  
-    .heading-row, .cta-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-    }
-  
-    h1 {
-      font-size: 2.5rem;
-      margin: 0;
-    }
-  
-    .logo-icon {
-      height: 55px;
-      width: auto;
-      user-select: none;
-      flex-shrink: 0;
-    }
-  
-    .form-inner {
-      max-width: 400px;
-      margin: 0 auto;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-  
-    textarea {
-      padding: 0.75rem;
-      font-size: 1.1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.375rem;
-      resize: vertical;
-      font-family: inherit;
-    }
-  
-    p {
-      font-size: 1.25rem;
-      margin-bottom: 1.25rem;
-      line-height: 1.6;
-    }
-  
-    .cta-button {
-      background-color: #3b82f6;
-      color: white;
-      font-size: 1.2rem;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      transition: background-color 0.2s;
-    }
-  
-    .cta-button:hover {
-      background-color: #2563eb;
-    }
-  
-    form {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-  
-    input, textarea {
-      padding: 0.75rem;
-      font-size: 1.1rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.375rem;
-    }
-  
-    .submit-button {
-      background-color: #10b981;
-      color: white;
-      font-size: 1.1rem;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 0.375rem;
-      cursor: pointer;
-    }
-  
-    .submit-button:hover {
-      background-color: #059669;
-    }
-  
-    footer {
-      margin-top: 2rem;
-      font-size: 1rem;
-      color: #6b7280;
-    }
-  
-    .fade-in {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-  
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  
-    .loader {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #10b981;
-      border-bottom-color: transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 4rem auto;
-    }
-  
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-  
-    @media (max-width: 640px) {
-      .heading-row, .cta-row {
-        flex-direction: column;
-      }
-      .logo-icon {
-        height: 50px;
-        margin: 0.5rem 0;
-      }
-    }
-  </style>  
-  
+
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: var(--max); margin: 0 auto; padding: 28px; }
+
+    /* Top nav */
+    .nav { position: sticky; top: 0; z-index: 30; backdrop-filter: saturate(140%) blur(10px); background: rgba(12,21,40,.65); border-bottom: 1px solid var(--ring); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:10px 24px; max-width: var(--max); margin:0 auto; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px; }
+    .brand img { width:32px; height:32px; border-radius:8px; }
+    .brand span { font-size: 18px; }
+
+    /* BUTTONS — unified sizes + hovers */
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 18px; border-radius:14px; font-weight:700; font-size:16px; line-height:1; letter-spacing:.2px; min-width: 220px; text-align:center; border:1px solid transparent; white-space:nowrap; transition: transform .12s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(59,130,246,.28); text-decoration: none; }
+    .btn:active { transform: translateY(0); }
+    .btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    .btn-primary { background: linear-gradient(180deg, var(--brand), var(--brand-strong)); color:#fff; }
+    .btn-primary:hover { filter: brightness(1.06); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--ring); }
+    .btn-ghost:hover { border-color: var(--brand); background: rgba(105,173,255,.08); color:#fff; }
+    .btn-accent { background: rgba(105,173,255,.18); color: var(--text); border-color: var(--brand); box-shadow: var(--shadow); }
+        /* Strong outlines for call + top-nav links */
+    .btn-outline-strong{border-color:rgba(105,173,255,.85)!important;background:rgba(105,173,255,.08)!important;}
+    .btn-outline-strong:hover{background:rgba(105,173,255,.16)!important;border-color:rgba(105,173,255,.95)!important;}
+    .nav .links .btn-ghost{border-color:rgba(105,173,255,.6);background:rgba(105,173,255,.04);border-width:2px;}
+    .nav .links .btn-ghost:hover{background:rgba(105,173,255,.12);border-color:rgba(105,173,255,.9);color:#fff;}
+
+    /* Equal-width pairs */
+    .btn-row { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+    .btn-row .btn { width: 100%; }
+    @media (max-width: 560px) { .btn-row { grid-template-columns: 1fr; } }
+
+    /* Hero */
+    .hero { padding: 36px 24px 24px; text-align:center; }
+    .hero .hero-logo { width:60px;height:auto;opacity:.95;filter: drop-shadow(0 6px 20px rgba(0,0,0,.35)); margin-bottom:6px; }
+    .hero h1 { font-size: clamp(30px, 3.8vw, 52px); line-height:1.08; margin: 4px 0 6px; }
+    .hero p { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); margin: 0 auto; max-width: 820px; }
+    .cta-row { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top: 16px; }
+
+    /* Feature badges */
+    .features { display:grid; grid-template-columns: repeat(6, 1fr); gap:12px; margin: 20px auto 4px; max-width: var(--max); }
+    .badge { background: rgba(255,255,255,.05); border:1px solid var(--ring); border-radius: 999px; padding: 10px 14px; display:flex; align-items:center; gap:10px; justify-content:center; color: var(--muted); }
+    .badge b { color: var(--text); }
+    @media (max-width: 980px) { .features { grid-template-columns: repeat(3, 1fr);} }
+    @media (max-width: 640px) { .features { grid-template-columns: repeat(2, 1fr);} }
+
+    /* Section headings */
+    .section { padding: 56px 0; }
+    .section h2 { font-size: clamp(24px, 3vw, 36px); margin: 0 0 14px; }
+    .subtitle { color: var(--muted); margin-top: -4px; }
+
+    /* Cards */
+    .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03)); border:1px solid var(--ring); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .card .head { display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--ring); background: rgba(105,173,255,.09); }
+    .card .head h3 { margin:0; font-size:20px; }
+    .card .body { padding: 16px 18px; display: grid; gap: 14px; }
+    .inline { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .thumb { width: 100%; border-radius: var(--radius-sm); border:1px solid var(--ring); cursor: zoom-in; }
+    .audio { width: 100%; border-radius: var(--radius-sm); background: var(--card); border:1px solid var(--ring); }
+    .hint { color: var(--muted); font-size: 14px; }
+
+    /* Lead form */
+    .form-wrap { background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(59,130,246,.08)); border: 1px solid var(--ring); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
+    form { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    form .full { grid-column: 1 / -1; }
+    input, textarea { width:100%; background: rgba(255,255,255,.06); color: var(--text); border:1px solid var(--ring); border-radius: 12px; padding:12px 14px; font: inherit; }
+    textarea { min-height: 110px; resize: vertical; }
+    .actions { display:block; }
+
+    /* FAQ */
+    .faq { max-width: none; margin: 0; }
+    .qa { border:1px solid var(--ring); border-radius: 14px; margin: 10px 0; overflow: hidden; background: rgba(255,255,255,.04); }
+    .qa summary { cursor: pointer; list-style: none; padding: 14px 16px; display:flex; align-items:center; justify-content:space-between; gap:10px; font-weight:700; }
+    .qa summary::-webkit-details-marker { display:none; }
+    .qa .answer { padding: 0 16px 14px; color: var(--muted); }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--ring); color: var(--muted); padding: 26px 0 38px; text-align:center; }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,.7); display:none; align-items:center; justify-content:center; z-index: 50; }
+    .modal.open { display:flex; }
+    .modal .modal-inner { max-width: 95vw; max-height: 88vh; }
+    .modal img { width: 100%; height: auto; display:block; border-radius: 12px; border:1px solid var(--ring); box-shadow: var(--shadow); }
+    .modal .close { position:absolute; top: 16px; right: 16px; background: rgba(0,0,0,.6); color:#fff; border:1px solid rgba(255,255,255,.25); border-radius: 10px; padding:8px 10px; cursor:pointer; }
+  </style>
 </head>
 <body>
-  <div class="loader" id="loader"></div>
-
-  <div class="container">
-    <div class="heading-row">
-      <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-      <h1 class="fade-in">📞 Meet RingBot — your AI phone assistant</h1>
-      <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-    </div>
-  
-    <p class="fade-in">RingBot creates and maintains smart AI phone agents for businesses.</p>
-    <p class="fade-in">They handle your calls 24/7 — answer FAQs, qualify leads, and even book appointments. All in a natural, human-sounding voice.</p>
-    
-    <p class="fade-in">💡 Perfect for hotels, guesthouses, salons, clinics, and service providers — anyone tired of missed calls and lost bookings.</p>
-    
-    <p class="fade-in">🎧 Listen to a real call:</p>
-    <div class="cta-row">
-      <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-      <audio controls>
-        <source src="Assets/call.m4a" type="audio/mp4" />
-        Your browser does not support the audio element.
-      </audio>
-      <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-    </div>
-  
-    <p class="fade-in">Or try it live — call now and see how it handles real questions from your customers.</p>
-    <div class="cta-row">
-      <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-      <a class="cta-button" href="tel:+441313812345">📞 +44 131 381 2345</a>
-      <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-    </div>
-  
-    <p class="fade-in">We can build one just like this for your business — fully branded and integrated with your tools: CRM, Telegram, Google Sheets, or anything else you use.</p>
-  
-    <p class="fade-in">Want your own demo assistant? Just fill out the form — and we’ll get in touch shortly.</p>
-  
-    <form name="lead-form" action="#">
-      <div class="form-inner">
-        <input type="text" name="name" placeholder="Your name*" required />
-        <input type="text" name="company" placeholder="Company name*" required />
-        <input type="email" name="email" placeholder="Email" />
-        <input type="tel" name="phone" placeholder="Phone number" />
-        <textarea name="note" placeholder="Anything you'd like to add?" rows="3"></textarea>
-  
-        <div class="cta-row">
-          <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-          <button class="submit-button" type="submit">🎧 Request My Demo Agent</button>
-          <img src="Assets/logo_t.png" alt="RingBot Logo" class="logo-icon" />
-        </div>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="Assets/logo_t.png" alt="RingBot logo">
+        <span>RingBot</span>
       </div>
-    </form>
-  
-    <div id="thanks-message" style="display:none; margin-top: 1rem; font-size: 1.25rem; color: #10b981;">
-      ✅ Thank you! We’ll be in touch shortly.
+      <div class="links">
+        <a class="btn btn-ghost" href="#features">Features</a>
+        <a class="btn btn-ghost" href="#demos">Demos</a>
+        <a class="btn btn-ghost" href="#trial">Get your demo</a>
+        <a class="btn btn-ghost" href="#faq">FAQ</a>
+      </div>
     </div>
-  
-    <footer>
-      <p>
-        📩 <a href="mailto:vlad.ringbot@gmail.com">vlad.ringbot@gmail.com</a> &nbsp;|&nbsp;
-        🔗 <a href="https://www.linkedin.com/in/vlad-boyarin" target="_blank">LinkedIn</a>
-      </p>
-      <p>© 2025 RingBot — Powered by Vlad | Voice AI Integrator</p>
-    </footer>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero wrapper">
+    <img src="Assets/logo_t.png" alt="RingBot" class="hero-logo"/>
+    <h1>Meet RingBot — your AI phone assistant</h1>
+    <p>We build AI phone agents that answer and qualify calls and instantly send the key details to your Telegram. They work 24/7 and save you hours.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="tel:+441313812345">📞 Call RingBot demo: +441313812345</a>
+      <a class="btn btn-primary" href="tel:+441372233443">📞 Call RealEstate demo: +441372233443</a>
+      <a class="btn btn-ghost" href="#demos">See examples ↓</a>
+    </div>
+
+    <!-- quick feature badges -->
+    <div id="features" class="features" aria-label="Key features">
+      <div class="badge">⏱️ <b>Saves time</b></div>
+      <div class="badge">🌙 <b>24/7 coverage</b></div>
+      <div class="badge">🎯 <b>Lead qualification</b></div>
+      <div class="badge">🤝 <b>Human‑like voice</b></div>
+      <div class="badge">📈 <b>Missed‑call recovery</b></div>
+      <div class="badge">🔌 <b>CRM / Sheets / Telegram</b></div>
+      <div class="badge">📞 <b>Use your number</b></div>
+      <div class="badge">⚙️ <b>Custom flows</b></div>
+      <div class="badge">🗣️ <b>Multi‑language</b></div>
+      <div class="badge">🔒 <b>Data privacy first</b></div>
+      <div class="badge">📨 <b>Instant Telegram summaries</b></div>
+      <div class="badge">👥 <b>Concurrent calls</b></div>
+    </div>
+  </header>
+
+  <!-- DEMOS -->
+  <section id="demos" class="section wrapper">
+    <h2>Live demos</h2>
+    <p class="subtitle">We built two demos for you. Listen to a full call, open the transcript, preview the Telegram lead, or simply phone the numbers to test. (UK calls are free.)</p>
+
+    <div class="grid-2">
+      <!-- DEMO 1: RingBot (this company) -->
+      <article class="card">
+        <div class="head">
+          <h3>Assistant: RingBot (this company)</h3>
+          <span class="hint">Real call recording</span>
+        </div>
+        <div class="body">
+          <audio class="audio" controls preload="metadata">
+            <source src="Assets/call_RingBot.m4a" type="audio/mp4" />
+            Your browser does not support the audio element.
+          </audio>
+          <div class="inline">
+            <img class="thumb" src="Assets/lead_RingBot.png" alt="Telegram lead example from RingBot demo" onclick="openModal('Assets/lead_RingBot.png')">
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-accent" onclick="openModal('Assets/flow_ringbot.png')">View full transcript</button>
+            <a class="btn btn-accent" href="tel:+441313812345">📞 Call this demo</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- DEMO 2: RealEstate vertical -->
+      <article class="card">
+        <div class="head">
+          <h3>Assistant: RealEstate (for agents)</h3>
+          <span class="hint">Real call recording</span>
+        </div>
+        <div class="body">
+          <audio class="audio" controls preload="metadata">
+            <source src="Assets/call_RealEstate.m4a" type="audio/mp4" />
+            Your browser does not support the audio element.
+          </audio>
+          <div class="inline">
+            <img class="thumb" src="Assets/lead_RealEstate.png" alt="Telegram lead example from RealEstate demo" onclick="openModal('Assets/lead_RealEstate.png')">
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-accent" onclick="openModal('Assets/flow_realestate.png')">View full transcript</button>
+            <a class="btn btn-accent" href="tel:+441372233443">📞 Call this demo</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TRIAL / FORM -->
+  <section id="trial" class="section wrapper">
+    <h2>Get a custom demo for your business</h2>
+    <p class="subtitle">We’ll spin up a branded assistant on your number (or ours), wired to your tools. Leave your details and we’ll contact you today.</p>
+
+    <div class="form-wrap">
+      <form id="lead-form" autocomplete="on">
+        <input name="name" placeholder="Your name*" required />
+        <input name="company" placeholder="Company name*" required />
+        <input type="tel" name="phone" placeholder="Phone (incl. country code)" />
+        <input type="email" name="email" placeholder="Email (optional)" />
+        <textarea name="note" class="full" placeholder="Anything to add?" ></textarea>
+
+        <input type="hidden" name="source" value="LandingPage" />
+        <div class="actions full">
+          <div class="btn-row">
+            <button type="submit" class="btn btn-primary">Request my demo</button>
+            <a class="btn btn-ghost btn-outline-strong" href="tel:+441313812345">📞 Or call now</a>
+          </div>
+          <span id="status" class="hint" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+      <div id="thanks" class="hint" style="display:none; padding:8px 2px">✅ Thank you! We’ll be in touch shortly.</div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section wrapper">
+    <h2>FAQ</h2>
+
+    <div class="faq">
+      <details class="qa">
+        <summary>How much does it cost?</summary>
+        <div class="answer">£70 one‑time setup. £70/month includes 500 talk minutes. After that, £0.10 per minute.</div>
+      </details>
+
+      <details class="qa">
+        <summary>Can you use my existing phone number?</summary>
+        <div class="answer">Yes. We give you the assistant’s number. You enable call forwarding from your number to that one. Switch it on/off any time — at night, on weekends, or when you’re busy. Or just leave it on and enjoy hands‑free call handling.</div>
+      </details>
+
+      <details class="qa">
+        <summary>Workload, concurrent calls, and spam filter</summary>
+        <div class="answer">The bot can work 24/7 and speak to multiple callers at once. There’s a configurable spam filter to block repeated nuisance calls.</div>
+      </details>
+
+      <details class="qa">
+        <summary>What integrations are available?</summary>
+        <div class="answer">Out of the box: Telegram notifications, Google Sheets logging, and custom webhooks. We can also connect to most CRMs with an API.</div>
+      </details>
+
+      <details class="qa">
+        <summary>Voices & accents</summary>
+        <div class="answer">Plenty of high‑quality voices with different accents. We can even clone your voice — or your receptionist’s — if you want it to sound exactly like your brand.</div>
+      </details>
+
+      <details class="qa">
+        <summary>Notifications</summary>
+        <div class="answer">Right after each call we send you a Telegram message with the most important details. No need to waste time on long calls — you get the key summary instantly.</div>
+      </details>
+
+      <details class="qa">
+        <summary>How do we get started?</summary>
+        <div class="answer">To start, fill out the request form — we’ll get in touch shortly to confirm the details. Or call our RingBot and leave a request through it. Same‑day setup for simple flows.</div>
+      </details>
+
+      <details class="qa">
+        <summary>Can I pause or cancel any time?</summary>
+        <div class="answer">Yes — month‑to‑month. Pause or cancel whenever you like; your data and settings remain intact for when you return.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <footer class="wrapper">
+    <p>📩 <a href="mailto:vlad.ringbot@gmail.com">vlad.ringbot@gmail.com</a> &nbsp;|&nbsp; 🔗 <a href="https://www.linkedin.com/in/vlad-boyarin" target="_blank" rel="noopener">LinkedIn</a></p>
+    <p>Made with ❤️ by Vlad • 2025</p>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="modal-inner"></div>
+    <button class="close" onclick="closeModal()">✕</button>
   </div>
 
   <script>
-    window.addEventListener("load", () => {
-      document.getElementById("loader").style.display = "none";
-      document.querySelector(".container").style.display = "block";
-    });
+    // ---------- Config ----------
+    const CLIENT_ID = 'AAA_RingBot';
+    const FORM_ENDPOINT = `/clients/${CLIENT_ID}/hooks/lead`;
 
-    const form = document.querySelector("form");
-    const thanks = document.getElementById("thanks-message");
+    // Simple image modal
+    function openModal(src){
+      const m = document.getElementById('modal');
+      const box = m.querySelector('.modal-inner');
+      box.innerHTML = `<img src="${src}" alt="Preview">`;
+      m.classList.add('open');
+    }
+    function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal(); });
 
-    form.addEventListener("submit", async (e) => {
+    // Form submit → JSON to custom webhook
+    const form = document.getElementById('lead-form');
+    const status = document.getElementById('status');
+    const thanks = document.getElementById('thanks');
+
+    form.addEventListener('submit', async (e)=>{
       e.preventDefault();
+      status.textContent = 'Sending…';
 
-      const formData = new FormData(form);
+      const data = Object.fromEntries(new FormData(form).entries());
 
       try {
-        const response = await fetch("https://86a6a691aa27.ngrok-free.app/client3_elevenlabs_lead", {
-          method: "POST",
-          body: formData,
-          mode: "cors"
+        const resp = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
         });
-
-        console.log("📅 Server status:", response.status);
-
-        if (response.ok) {
-          const text = await response.text();
-          console.log("📅 Response text:", text);
-
-          // Если сервер вернул "sent", или текст пустой – показываем "Спасибо"
-          if (!text || text.includes("sent")) {
-            form.style.display = "none";
-            thanks.style.display = "block";
-          } else {
-            form.style.display = "none";
-            thanks.style.display = "block";
-          }
+        if (resp.ok) {
+          form.reset();
+          status.textContent = '';
+          thanks.style.display = 'block';
         } else {
-          alert("Something went wrong. Server says: " + response.status);
+          status.textContent = 'Server error: ' + resp.status;
         }
-      } catch (error) {
-        console.error("❌ JS Fetch error:", error);
-        form.style.display = "none";
-        thanks.style.display = "block";
+      } catch (err) {
+        status.textContent = 'Network error. Try calling instead.';
+        console.error(err);
       }
+    });
+
+    // Smooth-scroll for in‑page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if (id && id.length>1) {
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+        }
+      })
     });
   </script>
 </body>
