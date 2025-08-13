@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="Assets/favicon.png" type="image/png">
-
-  <title>RingBot — AI Phone Assistant</title>
-  <meta name="description" content="RingBot installs AI phone agents that answer and qualify calls, then send key details to your Telegram — 24/7." />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="RingBot — your AI phone assistant">
-  <meta property="og:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries. Listen to demos and see transcripts.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ringbot-landing.onrender.com/">
-  <meta property="og:image" content="https://ringbot-landing.onrender.com/Assets/preview.png">
-  <meta property="og:image:secure_url" content="https://ringbot-landing.onrender.com/Assets/preview.png">
-
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="RingBot — AI phone assistant preview">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="RingBot — AI Phone Assistant">
-  <meta name="twitter:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries.">
-  <meta name="twitter:image" content="https://ringbot-landing.onrender.com/Assets/preview.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+    <link rel="icon" href="Assets/favicon.png?v=__VER__" type="image/png">
+    <link rel="apple-touch-icon" href="Assets/favicon.png?v=__VER__">
+  
+    <title>RingBot — AI Phone Assistant</title>
+    <meta name="description" content="RingBot installs AI phone agents that answer and qualify calls, then send key details to your Telegram — 24/7." />
+  
+    <!-- Open Graph -->
+    <meta property="og:title" content="RingBot — your AI phone assistant">
+    <meta property="og:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries. Listen to demos and see transcripts.">
+    <meta property="og:type" content="website">
+    <!-- Кладём версию в URL, чтобы ломать кэш парсеров -->
+    <meta property="og:url" content="__BASE_URL__/?v=__VER__">
+    <meta property="og:site_name" content="RingBot">
+  
+    <!-- Превью-картинка (абсолютные URL + версия) -->
+    <meta property="og:image" content="__BASE_URL__/Assets/preview.png?v=__VER__">
+    <meta property="og:image:secure_url" content="__BASE_URL__/Assets/preview.png?v=__VER__">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="RingBot — AI phone assistant preview">
+  
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RingBot — AI Phone Assistant">
+    <meta name="twitter:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries.">
+    <meta name="twitter:image" content="__BASE_URL__/Assets/preview.png?v=__VER__">
+    <meta name="twitter:domain" content="ringbot-landing.onrender.com">
 
   <style>
     :root {
