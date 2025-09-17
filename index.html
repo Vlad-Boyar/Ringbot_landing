@@ -8,18 +8,16 @@
     <link rel="apple-touch-icon" href="Assets/favicon.png?v=__VER__">
   
     <title>RingBot — AI Phone Assistant</title>
-    <meta name="description" content="RingBot installs AI phone agents that answer and qualify calls, then send key details to your Telegram — 24/7." />
+    <meta name="description" content="First week free. RingBot installs AI phone agents that answer and qualify calls, then send key details to your Telegram — 24/7." />
     <meta name="x-build-version" content="__VER__">
     
     <!-- Open Graph -->
     <meta property="og:title" content="RingBot — your AI phone assistant">
-    <meta property="og:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries. Listen to demos and see transcripts.">
+    <meta property="og:description" content="First week is FREE. Answer & qualify calls 24/7 and get instant Telegram summaries. Listen to demos and see transcripts." />
     <meta property="og:type" content="website">
-    <!-- Кладём версию в URL, чтобы ломать кэш парсеров -->
     <meta property="og:url" content="__BASE_URL__/?v=__VER__">
     <meta property="og:site_name" content="RingBot">
   
-    <!-- Превью-картинка (абсолютные URL + версия) -->
     <meta property="og:image" content="__BASE_URL__/Assets/preview.png?v=__VER__">
     <meta property="og:image:secure_url" content="__BASE_URL__/Assets/preview.png?v=__VER__">
     <meta property="og:image:type" content="image/png">
@@ -30,7 +28,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RingBot — AI Phone Assistant">
-    <meta name="twitter:description" content="Answer & qualify calls 24/7 and get instant Telegram summaries.">
+    <meta name="twitter:description" content="First week free. Answer & qualify calls 24/7 and get instant Telegram summaries.">
     <meta name="twitter:image" content="__BASE_URL__/Assets/preview.png?v=__VER__">
     <meta name="twitter:domain" content="ringbot-landing.onrender.com">
 
@@ -50,6 +48,10 @@
       --radius: 20px;
       --radius-sm: 14px;
       --max: 1240px;
+
+      /* promo */
+      --promo-bg: linear-gradient(90deg, #22c55e 0%, #3b82f6 100%);
+      --promo-text: #0a1224;
     }
 
     * { box-sizing: border-box; }
@@ -73,7 +75,14 @@
     .brand img { width:32px; height:32px; border-radius:8px; }
     .brand span { font-size: 18px; }
 
-    /* BUTTONS — unified sizes + hovers */
+    /* Announcement bar under nav */
+    .announce { background: var(--promo-bg); color: var(--promo-text); border-bottom: 1px solid rgba(255,255,255,.15); }
+    .announce .announce-inner { max-width: var(--max); margin:0 auto; padding:10px 24px; display:flex; gap:12px; align-items:center; justify-content:center; text-align:center; font-weight:800; letter-spacing:.2px; }
+    .announce .tag { background: rgba(255,255,255,.9); color:#0a1224; padding:6px 10px; border-radius:999px; font-size:13px; font-weight:900; text-transform:uppercase; }
+    .announce a { color:#0a1224; font-weight:800; text-decoration: underline; }
+    .announce .sep{opacity:.45}
+
+    /* BUTTONS */
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 18px; border-radius:14px; font-weight:700; font-size:16px; line-height:1; letter-spacing:.2px; min-width: 220px; text-align:center; border:1px solid transparent; white-space:nowrap; transition: transform .12s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease; }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(59,130,246,.28); text-decoration: none; }
     .btn:active { transform: translateY(0); }
@@ -83,7 +92,6 @@
     .btn-ghost { background: transparent; color: var(--text); border-color: var(--ring); }
     .btn-ghost:hover { border-color: var(--brand); background: rgba(105,173,255,.08); color:#fff; }
     .btn-accent { background: rgba(105,173,255,.18); color: var(--text); border-color: var(--brand); box-shadow: var(--shadow); }
-        /* Strong outlines for call + top-nav links */
     .btn-outline-strong{border-color:rgba(105,173,255,.85)!important;background:rgba(105,173,255,.08)!important;}
     .btn-outline-strong:hover{background:rgba(105,173,255,.16)!important;border-color:rgba(105,173,255,.95)!important;}
     .nav .links .btn-ghost{border-color:rgba(105,173,255,.6);background:rgba(105,173,255,.04);border-width:2px;}
@@ -95,7 +103,7 @@
     @media (max-width: 560px) { .btn-row { grid-template-columns: 1fr; } }
 
     /* Hero */
-    .hero { padding: 36px 24px 24px; text-align:center; }
+    .hero { padding: 36px 24px 24px; text-align:center; position: relative; }
     .hero .hero-logo { width:60px;height:auto;opacity:.95;filter: drop-shadow(0 6px 20px rgba(0,0,0,.35)); margin-bottom:6px; }
     .hero h1 { font-size: clamp(30px, 3.8vw, 52px); line-height:1.08; margin: 4px 0 6px; }
     .hero p { color: var(--muted); font-size: clamp(16px, 2.2vw, 20px); margin: 0 auto; max-width: 820px; }
@@ -117,14 +125,16 @@
     .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 22px; }
     @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
 
-    .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03)); border:1px solid var(--ring); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
-    .card .head { display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--ring); background: rgba(105,173,255,.09); }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.03)); border:1px solid var(--ring); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; position: relative; }
+    .card .head { display:flex; align-items:center; justify-content:space-between; padding:16px 18px; border-bottom:1px solid var(--ring); background: rgba(105,173,255,.09); gap:12px; flex-wrap:wrap; }
     .card .head h3 { margin:0; font-size:20px; }
+    .card .head-right { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .pill { background: #22c55e; color:#06111f; border:1px solid rgba(0,0,0,.25); font-weight:900; padding:6px 10px; border-radius:999px; letter-spacing:.2px; }
+    .hint { color: var(--muted); font-size: 14px; }
     .card .body { padding: 16px 18px; display: grid; gap: 14px; }
     .inline { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
     .thumb { width: 100%; border-radius: var(--radius-sm); border:1px solid var(--ring); cursor: zoom-in; }
     .audio { width: 100%; border-radius: var(--radius-sm); background: var(--card); border:1px solid var(--ring); }
-    .hint { color: var(--muted); font-size: 14px; }
 
     /* Lead form */
     .form-wrap { background: linear-gradient(180deg, rgba(34,197,94,.08), rgba(59,130,246,.08)); border: 1px solid var(--ring); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
@@ -150,6 +160,13 @@
     .modal .modal-inner { max-width: 95vw; max-height: 88vh; }
     .modal img { width: 100%; height: auto; display:block; border-radius: 12px; border:1px solid var(--ring); box-shadow: var(--shadow); }
     .modal .close { position:absolute; top: 16px; right: 16px; background: rgba(0,0,0,.6); color:#fff; border:1px solid rgba(255,255,255,.25); border-radius: 10px; padding:8px 10px; cursor:pointer; }
+
+    /* Sticky CTA on mobile */
+    .sticky-cta { position: sticky; bottom: 0; z-index: 40; background: rgba(12,21,40,.85); backdrop-filter: saturate(140%) blur(10px); border-top:1px solid var(--ring); display:none; }
+    .sticky-cta .inner { max-width: var(--max); margin:0 auto; padding:12px 14px; display:flex; gap:10px; align-items:center; justify-content:space-between; }
+    .sticky-cta .txt { font-weight:800; }
+    @media (max-width: 900px){ .sticky-cta{display:block;} }
+
   </style>
 </head>
 <body>
@@ -169,88 +186,100 @@
     </div>
   </div>
 
+  <!-- Announcement bar -->
+  <div class="announce">
+    <div class="announce-inner">
+      <span class="tag">Free Trial</span>
+      <span><b>First week is 100% FREE</b><span class="sep"> • </span>No credit card. Cancel anytime.</span>
+      <a href="#trial">Start now ↓</a>
+    </div>
+  </div>
+
   <!-- HERO -->
   <header class="hero wrapper">
     <img src="Assets/logo_t.png" alt="RingBot" class="hero-logo"/>
+    <!-- (deal pill removed per request) -->
+
     <h1>Meet RingBot — your AI phone assistant</h1>
     <p>We build AI phone agents that answer and qualify calls and instantly send the key details to your Telegram. They work 24/7 and save you hours.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="tel:+441313812345">📞 Call RingBot demo: +441313812345</a>
-      <a class="btn btn-primary" href="tel:+441372233443">📞 Call RealEstate demo: +441372233443</a>
+      <a class="btn btn-primary" href="#trial">🚀 Start your free week</a>
       <a class="btn btn-ghost" href="#demos">See examples ↓</a>
+      <a class="btn btn-ghost" href="tel:+441313812345">📞 Call RingBot demo</a>
+      <a class="btn btn-ghost" href="tel:+441372233443">📞 Call RealEstate demo</a>
     </div>
 
-    <!-- quick feature badges -->
+    <!-- feature badges -->
     <div id="features" class="features" aria-label="Key features">
+      <!-- removed the extra 🆓 badge to keep grid even -->
       <div class="badge">⏱️ <b>Saves time</b></div>
       <div class="badge">🌙 <b>24/7 coverage</b></div>
       <div class="badge">🎯 <b>Lead qualification</b></div>
-      <div class="badge">🤝 <b>Human‑like voice</b></div>
-      <div class="badge">📈 <b>Missed‑call recovery</b></div>
+      <div class="badge">🤝 <b>Human-like voice</b></div>
+      <div class="badge">📈 <b>Missed-call recovery</b></div>
       <div class="badge">🔌 <b>CRM / Sheets / Telegram</b></div>
       <div class="badge">📞 <b>Use your number</b></div>
       <div class="badge">⚙️ <b>Custom flows</b></div>
-      <div class="badge">🗣️ <b>Multi‑language</b></div>
+      <div class="badge">🗣️ <b>Multi-language</b></div>
       <div class="badge">🔒 <b>Data privacy first</b></div>
       <div class="badge">📨 <b>Instant Telegram summaries</b></div>
       <div class="badge">👥 <b>Concurrent calls</b></div>
     </div>
   </header>
 
-  <!-- DEMOS -->
-  <section id="demos" class="section wrapper">
-    <h2>Live demos</h2>
-    <p class="subtitle">We built two demos for you. Listen to a full call, open the transcript, preview the Telegram lead, or simply phone the numbers to test. (UK calls are free.)</p>
+<!-- DEMOS -->
+<section id="demos" class="section wrapper">
+  <h2>Live demos</h2>
+  <p class="subtitle">We built two demos for you. Listen to a full call, open the transcript, preview the Telegram lead, or simply phone the numbers to test. (UK calls are free.)</p>
 
-    <div class="grid-2">
-      <!-- DEMO 1: RingBot (this company) -->
-      <article class="card">
-        <div class="head">
-          <h3>Assistant: RingBot (this company)</h3>
-          <span class="hint">Real call recording</span>
+  <div class="grid-2">
+    <!-- DEMO 1: RealEstate vertical -->
+    <article class="card">
+      <div class="head">
+        <h3>RealEstate (for agents)</h3>
+      </div>
+      <div class="body">
+        <audio class="audio" controls preload="metadata">
+          <source src="Assets/call_RealEstate.m4a" type="audio/mp4" />
+          Your browser does not support the audio element.
+        </audio>
+        <div class="inline">
+          <img class="thumb" src="Assets/lead_RealEstate.png" alt="Telegram lead example from RealEstate demo" onclick="openModal('Assets/lead_RealEstate.png')">
         </div>
-        <div class="body">
-          <audio class="audio" controls preload="metadata">
-            <source src="Assets/call_RingBot.m4a" type="audio/mp4" />
-            Your browser does not support the audio element.
-          </audio>
-          <div class="inline">
-            <img class="thumb" src="Assets/lead_RingBot.png" alt="Telegram lead example from RingBot demo" onclick="openModal('Assets/lead_RingBot.png')">
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-accent" onclick="openModal('Assets/flow_ringbot.png')">View full transcript</button>
-            <a class="btn btn-accent" href="tel:+441313812345">📞 Call this demo</a>
-          </div>
+        <div class="btn-row">
+          <button class="btn btn-accent" onclick="openModal('Assets/flow_realestate.png')">View full transcript</button>
+          <a class="btn btn-accent" href="#trial">Start free week →</a>
         </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- DEMO 2: RealEstate vertical -->
-      <article class="card">
-        <div class="head">
-          <h3>Assistant: RealEstate (for agents)</h3>
-          <span class="hint">Real call recording</span>
+    <!-- DEMO 2: RingBot (this company) -->
+    <article class="card">
+      <div class="head">
+        <h3>RingBot (this company)</h3>
+      </div>
+      <div class="body">
+        <audio class="audio" controls preload="metadata">
+          <source src="Assets/call_RingBot.m4a" type="audio/mp4" />
+          Your browser does not support the audio element.
+        </audio>
+        <div class="inline">
+          <img class="thumb" src="Assets/lead_RingBot.png" alt="Telegram lead example from RingBot demo" onclick="openModal('Assets/lead_RingBot.png')">
         </div>
-        <div class="body">
-          <audio class="audio" controls preload="metadata">
-            <source src="Assets/call_RealEstate.m4a" type="audio/mp4" />
-            Your browser does not support the audio element.
-          </audio>
-          <div class="inline">
-            <img class="thumb" src="Assets/lead_RealEstate.png" alt="Telegram lead example from RealEstate demo" onclick="openModal('Assets/lead_RealEstate.png')">
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-accent" onclick="openModal('Assets/flow_realestate.png')">View full transcript</button>
-            <a class="btn btn-accent" href="tel:+441372233443">📞 Call this demo</a>
-          </div>
+        <div class="btn-row">
+          <button class="btn btn-accent" onclick="openModal('Assets/flow_ringbot.png')">View full transcript</button>
+          <a class="btn btn-accent" href="#trial">Start free week →</a>
         </div>
-      </article>
-    </div>
-  </section>
+      </div>
+    </article>
+  </div>
+</section>
+
 
   <!-- TRIAL / FORM -->
   <section id="trial" class="section wrapper">
     <h2>Get a custom demo for your business</h2>
-    <p class="subtitle">We’ll spin up a branded assistant on your number (or ours), wired to your tools. Leave your details and we’ll contact you today.</p>
+    <p class="subtitle">First week is <b>free</b> — no credit card required. We’ll spin up a branded assistant on your number (or ours), wired to your tools. Leave your details and we’ll contact you today.</p>
 
     <div class="form-wrap">
       <form id="lead-form" autocomplete="on">
@@ -258,18 +287,19 @@
         <input name="company" placeholder="Company name*" required />
         <input type="tel" name="phone" placeholder="Phone (incl. country code)" />
         <input type="email" name="email" placeholder="Email (optional)" />
-        <textarea name="note" class="full" placeholder="Anything to add?" ></textarea>
+        <textarea name="note" class="full" placeholder="Anything to add? (WhatsUp / Telegram)" ></textarea>
 
         <input type="hidden" name="source" value="LandingPage" />
         <div class="actions full">
           <div class="btn-row">
-            <button type="submit" class="btn btn-primary">Request my demo</button>
+            <button type="submit" class="btn btn-primary">🚀 Start my free week</button>
             <a class="btn btn-ghost btn-outline-strong" href="tel:+441313812345">📞 Or call now</a>
           </div>
           <span id="status" class="hint" role="status" aria-live="polite"></span>
         </div>
       </form>
       <div id="thanks" class="hint" style="display:none; padding:8px 2px">✅ Thank you! We’ll be in touch shortly.</div>
+      <div class="hint" style="padding-top:8px">No setup fee during the free week. Cancel anytime.</div>
     </div>
   </section>
 
@@ -278,7 +308,7 @@
     <h2>FAQ</h2>
 
     <div class="faq">
-      <details class="qa">
+      <details class="qa" open>
         <summary>How much does it cost?</summary>
         <div class="answer">
           First week is <b>free</b> — no risk trial.<br><br>
@@ -291,7 +321,7 @@
 
       <details class="qa">
         <summary>Can you use my existing phone number?</summary>
-        <div class="answer">Yes. We give you the assistant’s number. You enable call forwarding from your number to that one. Switch it on/off any time — at night, on weekends, or when you’re busy. Or just leave it on and enjoy hands‑free call handling.</div>
+        <div class="answer">Yes. We give you the assistant’s number. You enable call forwarding from your number to that one. Switch it on/off any time — at night, on weekends, or when you’re busy. Or just leave it on and enjoy hands-free call handling.</div>
       </details>
 
       <details class="qa">
@@ -306,7 +336,7 @@
 
       <details class="qa">
         <summary>Voices & accents</summary>
-        <div class="answer">Plenty of high‑quality voices with different accents. We can even clone your voice — or your receptionist’s — if you want it to sound exactly like your brand.</div>
+        <div class="answer">Plenty of high-quality voices with different accents. We can even clone your voice — or your receptionist’s — if you want it to sound exactly like your brand.</div>
       </details>
 
       <details class="qa">
@@ -316,12 +346,12 @@
 
       <details class="qa">
         <summary>How do we get started?</summary>
-        <div class="answer">To start, fill out the request form — we’ll get in touch shortly to confirm the details. Or call our RingBot and leave a request through it. Same‑day setup for simple flows.</div>
+        <div class="answer">To start, fill out the request form — we’ll get in touch shortly to confirm the details. Or call our RingBot and leave a request through it. Same-day setup for simple flows.</div>
       </details>
 
       <details class="qa">
         <summary>Can I pause or cancel any time?</summary>
-        <div class="answer">Yes — month‑to‑month. Pause or cancel whenever you like; your data and settings remain intact for when you return.</div>
+        <div class="answer">Yes — month-to-month. Pause or cancel whenever you like; your data and settings remain intact for when you return.</div>
       </details>
     </div>
   </section>
@@ -331,6 +361,14 @@
     <p>📩 <a href="mailto:vlad.ringbot@gmail.com">vlad.ringbot@gmail.com</a> &nbsp;|&nbsp; 🔗 <a href="https://www.linkedin.com/in/vlad-boyarin" target="_blank" rel="noopener">LinkedIn</a></p>
     <p>Made with ❤️ by Vlad • 2025</p>
   </footer>
+
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta">
+    <div class="inner wrapper" style="padding:10px 20px">
+      <div class="txt">🆓 First week free — get your demo</div>
+      <a class="btn btn-primary" href="#trial">Start now</a>
+    </div>
+  </div>
 
   <!-- Modal -->
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Image preview">
@@ -382,7 +420,7 @@
       }
     });
 
-    // Smooth-scroll for in‑page links
+    // Smooth-scroll for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', (e)=>{
         const id = a.getAttribute('href');
