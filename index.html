@@ -57,11 +57,13 @@
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
-      margin: 0; font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background: linear-gradient(180deg, #0c1528 0%, #0f1a32 50%, #111b33 100%);
       background-attachment: fixed;
       color: var(--text);
-    }
+      padding-top: 64px; /* чтобы контент не залезал под фиксированную навигацию */
+        }
 
     a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -69,8 +71,17 @@
     .wrapper { max-width: var(--max); margin: 0 auto; padding: 28px; }
 
     /* Top nav */
-    .nav { position: sticky; top: 0; z-index: 30; backdrop-filter: saturate(140%) blur(10px); background: rgba(12,21,40,.65); border-bottom: 1px solid var(--ring); }
-    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:10px 24px; max-width: var(--max); margin:0 auto; }
+    .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /* чуть выше модалки */
+    backdrop-filter: saturate(140%) blur(10px);
+    background: rgba(12,21,40,.85);
+    border-bottom: 1px solid var(--ring);
+        }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 300px; }
     .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px; }
     .brand img { width:32px; height:32px; border-radius:8px; }
     .brand span { font-size: 18px; }
@@ -180,9 +191,11 @@
       <div class="links">
         <a class="btn btn-ghost" href="#features">Features</a>
         <a class="btn btn-ghost" href="#demos">Demos</a>
+        <a class="btn btn-ghost" href="#pricing">Pricing</a>
         <a class="btn btn-ghost" href="#trial">Get your demo</a>
         <a class="btn btn-ghost" href="#faq">FAQ</a>
       </div>
+      
     </div>
   </div>
 
@@ -275,7 +288,65 @@
   </div>
 </section>
 
+  <!-- PRICING -->
+  <section id="pricing" class="section wrapper">
+    <h2>Pricing</h2>
+    <p class="subtitle">Choose the plan that fits your call volume. First week is always free.</p>
 
+    <div class="grid-2" style="display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:28px">
+      <!-- Basic -->
+      <article class="card">
+        <div class="head">
+          <h3>Basic</h3>
+        </div>
+        <div class="body" style="text-align:center">
+          <h2>£69<span style="font-size:16px;font-weight:500"> /month</span></h2>
+          <p>200 minutes included<br>£0.30 / min after</p>
+          <ul style="list-style:none;padding:0;margin:18px 0;color:var(--muted);text-align:left">
+            <li>~5 calls / day</li>
+            <li>Up to 5 concurrent calls</li>
+            <li>Standard support</li>
+          </ul>
+          <a class="btn btn-primary" href="#trial">Choose Basic</a>
+        </div>
+      </article>
+
+      <!-- Pro -->
+      <article class="card" style="border:2px solid var(--brand);">
+        <div class="head">
+          <h3>Pro <span class="pill">Most Popular</span></h3>
+        </div>
+        <div class="body" style="text-align:center">
+          <h2>£149<span style="font-size:16px;font-weight:500"> /month</span></h2>
+          <p>500 minutes included<br>£0.25 / min after</p>
+          <ul style="list-style:none;padding:0;margin:18px 0;color:var(--muted);text-align:left">
+            <li>10–15 calls / day</li>
+            <li>Up to 10 concurrent calls</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-primary" href="#trial">Choose Pro</a>
+        </div>
+      </article>
+
+      <!-- VIP -->
+      <article class="card">
+        <div class="head">
+          <h3>VIP</h3>
+        </div>
+        <div class="body" style="text-align:center">
+          <h2>£399<span style="font-size:16px;font-weight:500"> /month</span></h2>
+          <p>1500 minutes included<br>£0.20 / min after</p>
+          <ul style="list-style:none;padding:0;margin:18px 0;color:var(--muted);text-align:left">
+            <li>20+ calls / day</li>
+            <li>Unlimited concurrent calls</li>
+            <li>24/7 Premium support</li>
+          </ul>
+          <a class="btn btn-primary" href="#trial">Choose VIP</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  
   <!-- TRIAL / FORM -->
   <section id="trial" class="section wrapper">
     <h2>Get a custom demo for your business</h2>
@@ -312,10 +383,11 @@
         <summary>How much does it cost?</summary>
         <div class="answer">
           First week is <b>free</b> — no risk trial.<br><br>
-          After that: <br>
-          • £100/month base fee (includes setup & support)<br>
-          • + £0.20 per minute of talk time<br><br>
-          Example: If you get 300 minutes of calls in a month → £100 + (300 × £0.20) = £160 total.
+          After that you pick a plan:<br>
+          • <b>Basic</b> — £69 / month (200 minutes, then £0.30/min)<br>
+          • <b>Pro</b> — £149 / month (500 minutes, then £0.25/min)<br>
+          • <b>VIP</b> — £399 / month (1500 minutes, then £0.20/min)<br><br>
+          You can upgrade or downgrade at any time.
         </div>
       </details>
 
@@ -325,8 +397,13 @@
       </details>
 
       <details class="qa">
-        <summary>Workload, concurrent calls, and spam filter</summary>
-        <div class="answer">The bot can work 24/7 and speak to multiple callers at once. There’s a configurable spam filter to block repeated nuisance calls.</div>
+        <summary>How many calls can it handle?</summary>
+        <div class="answer">
+          The assistant can answer multiple calls at once. Limits depend on your plan:<br>
+          • Basic — up to 5 concurrent calls<br>
+          • Pro — up to 10 concurrent calls<br>
+          • VIP — unlimited concurrent calls<br>
+        </div>
       </details>
 
       <details class="qa">
@@ -408,10 +485,14 @@
           body: JSON.stringify(data)
         });
         if (resp.ok) {
-          form.reset();
-          status.textContent = '';
-          thanks.style.display = 'block';
-        } else {
+        form.reset();
+        status.textContent = '';
+        thanks.style.display = 'block';
+        // редирект через 1 сек.
+        setTimeout(()=>{
+          window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSeSnVOLYNPbMknYLMPS0ljsbBEaiNu5NDSodhC2cW3ZJXnMiQ/viewform";
+        }, 1000);
+      } else {
           status.textContent = 'Server error: ' + resp.status;
         }
       } catch (err) {
