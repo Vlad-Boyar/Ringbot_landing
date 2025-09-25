@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thank you — RingBot</title>
+  <style>
+    body {
+      font-family: ui-sans-serif, Arial, sans-serif;
+      background: #0c1528;
+      color: #e8eef6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .box {
+      max-width: 600px;
+    }
+    h1 { font-size: 28px; margin-bottom: 12px; }
+    p { color: #cfd8e3; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>✅ Thank you!</h1>
+    <p>Your request has been received. You’ll be redirected to the setup form in a moment.</p>
+  </div>
+
+  <script>
+    // авто-редирект на Google Form через 2 сек
+    setTimeout(()=>{
+      window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSeSnVOLYNPbMknYLMPS0ljsbBEaiNu5NDSodhC2cW3ZJXnMiQ/viewform";
+    }, 2000);
+  </script>
+</body>
+</html>
