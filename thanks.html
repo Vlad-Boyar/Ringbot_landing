@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thank you — RingBot</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17599736692"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17599736692');
+
+    // фиксируем событие "конверсия"
+    gtag('event', 'conversion', {
+      'send_to': 'AW-17599736692/thankyou'
+    });
+  </script>
+
   <style>
     body {
       font-family: ui-sans-serif, Arial, sans-serif;
@@ -26,7 +41,8 @@
 <body>
   <div class="box">
     <h1>✅ Thank you!</h1>
-    <p>Your request has been received. You’ll be redirected to the setup form in a moment.</p>
+    <p>Your request has been received.<br>
+       You’ll be redirected to the setup form in a moment.</p>
   </div>
 
   <script>
